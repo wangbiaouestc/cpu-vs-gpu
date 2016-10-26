@@ -12,14 +12,9 @@ import numpy as np
 
 def read_data():
     filenames = ['intel-sp.csv',
-                 'intel-dp.csv',
-                 'nvidia-sp.csv',
-                 'nvidia-dp.csv']
-    legend_names = ['Intel CPU SP',
-                    'Intel CPU DP',
-                    'Nvidia GPU SP',
-                    'Nvidia GPU DP']
-    colors = ['DeepSkyBlue', 'RoyalBlue', 'ForestGreen', 'DarkGreen']
+                 'nvidia-sp.csv']
+    legend_names = ['Intel CPU','Nvidia GPU']
+    colors = ['RoyalBlue', 'DarkGreen']
 
     date_format = '%Y-%m-%d'
     data = {}
@@ -37,8 +32,10 @@ def read_data():
                 data[legend_name]['flops'].append(float(row[1]))
                 d = datetime.datetime.strptime(row[2].strip(' "'), date_format)
                 data[legend_name]['dates'].append(d)
-                data[legend_name]['placement_offset'].append(float(row[4]))
+                data[legend_name]['placement_offset'].append(float(row[4]))                
+    print data[legend_name]['placement_offset']
     return data
+
 
 
 def format_axes(ax, fontsize=8):
@@ -97,10 +94,10 @@ def plot(output_filename):
                 verticalalignment='center',
                 color=series['color'],
                 weight='bold',
-                fontsize=9)
+                fontsize=12)
 
     ax.set_xlabel('Release date', size=12)
-    ax.set_ylabel('Theoretical peak (GFLOPS/s)', size=11)
+    ax.set_ylabel('Theoretical peak (GFLOPS/s)', size=12)
 
     matplotlib.pyplot.savefig(output_filename, bbox_inches='tight')
 
