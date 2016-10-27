@@ -97,7 +97,7 @@ def plot(output_filename):
                 fontsize=12)
 
     ax.set_xlabel('Release date', size=12)
-    ax.set_ylabel('Theoretical peak (GFLOPS/s)', size=12)
+    ax.set_ylabel('Theoretical peak [Gflops]', size=12)
 
     matplotlib.pyplot.savefig(output_filename, bbox_inches='tight')
 
